@@ -1,14 +1,16 @@
 
 
 logging:
-  config: classpath:log4j2-dev.xml
+  config: classpath:logback-spring.xml
+
+
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
     type: com.alibaba.druid.pool.DruidDataSource
@@ -17,7 +19,7 @@ spring:
 
 
 
-#mybatis-plus配置控制台打印完整带参数SQL语句
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis-plus配置控制台打印完整带参数SQL语句(爬虫项目不需要打开，否则日志太多)
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

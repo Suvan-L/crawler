@@ -34,12 +34,12 @@ public class CompanyList extends Model<CompanyList> {
     private Integer id;
 
     /**
-     * [必填] 公司名
+     * [选填] 公司名
      */
     private String entName;
 
     /**
-     * [必填] 统一社会信用代码
+     * [选填] 统一社会信用代码
      */
     private String uniScid;
 
@@ -49,27 +49,27 @@ public class CompanyList extends Model<CompanyList> {
     private String regNo;
 
     /**
-     * [必填] 法定代表人
+     * [选填] 法定代表人
      */
     private String leRep;
 
     /**
-     * [必填] 成立日期
+     * [选填] 成立日期
      */
     private LocalDateTime estDate;
 
     /**
-     * [必填] 企业状态
+     * [选填] 企业状态
      */
     private String opStateCcn;
 
     /**
-     * [必填] 注册资金（2 位小数点）（万元为单位）
+     * [选填] 注册资金（2 位小数点）（万元为单位）
      */
     private BigDecimal regCapital;
 
     /**
-     * [必填] 注册资金单位(例：人名币元)
+     * [选填] 注册资金单位(例：人名币元)
      */
     private String reCapitalCoin;
 

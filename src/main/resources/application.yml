@@ -12,4 +12,4 @@ spring:
       max-file-size: 50MB
 
 server:
-    port: 8080
+    port: 8989
