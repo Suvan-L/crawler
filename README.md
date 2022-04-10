@@ -27,8 +27,10 @@
     username: root
     password: root
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
-
 ```
+- 创建 test 数据
+- 执行 SQL 脚本
+  - sql/3_company_info_ddl.sql
 
 # 项目启动 
 > 注意：启动时将会直接开启爬虫，请确保数据库链接正确
