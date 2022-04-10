@@ -2,7 +2,6 @@ package org.crawler.service.spider;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import us.codecraft.webmagic.Page;
@@ -19,7 +18,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
 
 @Component
 @Slf4j
-public class CompanyListProcessor implements PageProcessor {
+public class GD_CompanyListProcessor implements PageProcessor {
 
     /**
      * 爬虫实例

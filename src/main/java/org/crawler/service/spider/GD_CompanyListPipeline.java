@@ -6,10 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.crawler.entity.CompanyList;
 import org.crawler.entity.spider.company.CompanyListApiResult;
 import org.crawler.mapper.CompanyListMapper;
-import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.HtmlUtils;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
@@ -32,7 +30,7 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 @Component
-public class CompanyListPipeline implements Pipeline {
+public class GD_CompanyListPipeline implements Pipeline {
 
     @Autowired
     private CompanyListMapper companyListMapper;

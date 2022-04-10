@@ -1,11 +1,7 @@
 package org.crawler.service.spider;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.crawler.entity.CompanyShorter;
 import org.crawler.mapper.CompanyShorterMapper;
@@ -16,16 +12,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StopWatch;
-import us.codecraft.webmagic.*;
+import us.codecraft.webmagic.Request;
+import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.model.HttpRequestBody;
-import us.codecraft.webmagic.pipeline.Pipeline;
-import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.utils.HttpConstant;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 公司列表爬虫组件
@@ -38,16 +28,16 @@ import java.util.List;
 @Component
 @Order(value = 10)
 @Slf4j
-public class CompanyListSpiderComponent implements ApplicationRunner {
+public class GD_CompanyListSpiderComponent implements ApplicationRunner {
 
     @Autowired
     private CompanyShorterMapper companyShorterMapper;
 
     @Autowired
-    private CompanyListProcessor companyListProcessor;
+    private GD_CompanyListProcessor guangdongCompanyListProcessor;
 
     @Autowired
-    private CompanyListPipeline companyListPipeline;
+    private GD_CompanyListPipeline GDCompanyListPipeline;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -69,8 +59,8 @@ public class CompanyListSpiderComponent implements ApplicationRunner {
         int counter = 1;
         while (counter < total) {
             // 初始化爬虫(设置 “处理器” 和 “持久化” 工具)
-            Spider spider = Spider.create(companyListProcessor)
-                    .addPipeline(companyListPipeline);
+            Spider spider = Spider.create(guangdongCompanyListProcessor)
+                    .addPipeline(GDCompanyListPipeline);
             log.info("当前执行 pageNum : {}, pageSize : {}, couter : {}, total : {}", pageNum, pageSize, counter, total);
 
 
