@@ -1,4 +1,4 @@
-package org.crawler.entity.spider.company;
+package org.crawler.service.spider.gsxt;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -15,7 +15,7 @@ import java.util.List;
  * @version: 1.9
  */
 @Data
-public class CompanyListApiResult {
+public class GD_CompanyListApiResult {
     private Integer code;
     private String msg;
     @JsonProperty("data")

@@ -38,7 +38,7 @@ public class GD_CompanyListProcessor implements PageProcessor {
 
         String rewText = page.getRawText();
 
-        org.crawler.entity.spider.company.CompanyListApiResult apiResult = JSON.parseObject(rewText, org.crawler.entity.spider.company.CompanyListApiResult.class);
+        GD_CompanyListApiResult apiResult = JSON.parseObject(rewText, GD_CompanyListApiResult.class);
         if (!CollectionUtils.isEmpty(apiResult.getData().getRecords())) {
             // 将所有内容进行查询入库
             page.putField("records", apiResult.getData().getRecords());

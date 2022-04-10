@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.crawler.entity.CompanyList;
-import org.crawler.entity.spider.company.CompanyListApiResult;
 import org.crawler.mapper.CompanyListMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,9 +37,9 @@ public class GD_CompanyListPipeline implements Pipeline {
     @Override
     public void process(ResultItems resultItems, Task task) {
         // log.info("接收处理参数 resultItems: {}, task : {}", resultItems, task);
-        List<CompanyListApiResult.DataDTO.RecordsDTO> recordsDTOList = resultItems.get("records");
+        List<GD_CompanyListApiResult.DataDTO.RecordsDTO> recordsDTOList = resultItems.get("records");
         if (recordsDTOList != null) {
-            for (CompanyListApiResult.DataDTO.RecordsDTO recordsDTO : recordsDTOList) {
+            for (GD_CompanyListApiResult.DataDTO.RecordsDTO recordsDTO : recordsDTOList) {
                 try {
                     // TODO 先查询是否存在
                     String uni_scid = recordsDTO.getUniSCID();
