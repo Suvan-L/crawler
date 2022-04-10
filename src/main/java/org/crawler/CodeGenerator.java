@@ -41,7 +41,9 @@ public class CodeGenerator {
     /**
      * 将要生成的表名
      */
-    private String [] tables = {"crawler_company_shorter", "crawler_company_list"};
+//    private String [] tables = {"crawler_company_shorter", "crawler_company_list"};
+    private String [] tables = {"crawler_credit_china_company_list"};
+
 
     /**
      * 自定义模板位置
