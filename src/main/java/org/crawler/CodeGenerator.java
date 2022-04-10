@@ -8,11 +8,14 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import lombok.Data;
+import org.yaml.snakeyaml.Yaml;
 
+import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -22,7 +25,7 @@ public class CodeGenerator {
     /**
      * 配置文件名
      */
-    private final static String APP_PROPERTY = "application.properties";
+    private final static String APP_PROPERTY = "application-dev.yml";
     private String projectPath = System.getProperty("user.dir");
     /**
      * 公共包路径
@@ -162,18 +165,20 @@ public class CodeGenerator {
 
 
     private static DataSourceConfig dataSourceConfig() {
-        DataSourceConfig dsc = new DataSourceConfig();
+        DataSourceConfig dsc = null;
 
         String resourcePath = System.getProperty("user.dir") + "/src/main/resources/" + APP_PROPERTY;
         try {
             InputStream inStream = new FileInputStream(new File(resourcePath));
-            Properties prop = new Properties();
-            prop.load(inStream);
+            Yaml yaml = new Yaml();
+            Map<String, Object> map = yaml.loadAs(inStream, Map.class);
+            Map<String, Object> dataSourceMap = (Map<String, Object>)((Map<String, Object>) map.get("spring")).get("datasource");
 
-            dsc.setUrl(prop.getProperty("spring.datasource.url"));
-            dsc.setDriverName(prop.getProperty("spring.datasource.driver-class-name"));
-            dsc.setUsername(prop.getProperty("spring.datasource.username"));
-            dsc.setPassword(prop.getProperty("spring.datasource.password"));
+            dsc = new DataSourceConfig();
+                dsc.setUrl((String) dataSourceMap.get("url"));
+                dsc.setDriverName((String) dataSourceMap.get("driver-class-name"));
+                dsc.setUsername((String) dataSourceMap.get("username"));
+                dsc.setPassword((String) dataSourceMap.get("password"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -181,5 +186,7 @@ public class CodeGenerator {
 
         return dsc;
     }
+
+
 
 }

@@ -4,7 +4,7 @@ spring:
   mvc:
     throw-exception-if-no-handler-found: true
 
-    # 支持前端页面访问 localhost:8080/index.html
+    # 支持前端页面访问 localhost:8989/index.html
     static-path-pattern: /**
   # 单个文件的最大值
   servlet:
