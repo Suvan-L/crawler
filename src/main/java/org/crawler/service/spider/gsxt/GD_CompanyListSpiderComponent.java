@@ -1,4 +1,4 @@
-package org.crawler.service.spider;
+package org.crawler.service.spider.gsxt;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -42,7 +42,8 @@ public class GD_CompanyListSpiderComponent implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // spring 项目初始化后执行
-        this.start();
+        // TODO [2022.04.10] 暂时关闭，取消项目启动时执行，后续针对企业工商信息，使用 “信用中国” 接口
+//        this.start();
     }
 
     /**

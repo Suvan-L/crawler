@@ -1,4 +1,4 @@
-package org.crawler.service.spider;
+package org.crawler.service.spider.gsxt;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
