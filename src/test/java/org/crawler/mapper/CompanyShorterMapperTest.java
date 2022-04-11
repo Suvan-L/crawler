@@ -20,7 +20,7 @@ import java.io.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @Slf4j
-public class CompanyShorterMapperest {
+public class CompanyShorterMapperTest {
 
     @Autowired
     private CompanyShorterMapper companyShorterMapper;

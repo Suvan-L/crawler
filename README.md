@@ -31,6 +31,15 @@
 - 创建 test 数据
 - 执行 SQL 脚本
   - sql/3_company_info_ddl.sql
+- 配置邮件服务(配置后，可调用 MailComponent 发送邮件)
+```
+  mail:
+    host: smtp.163.com
+    username: 
+    password: 
+    default-encoding: UTF-8
+
+```
 
 # 项目启动 
 > 注意：启动时将会直接开启爬虫，请确保数据库链接正确

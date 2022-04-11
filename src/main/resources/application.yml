@@ -11,5 +11,15 @@ spring:
     multipart:
       max-file-size: 50MB
 
+  # 邮件服务
+  mail:
+    host: smtp.163.com
+    username:
+    password:
+    default-encoding: UTF-8
+
 server:
     port: 8989
+
+
+

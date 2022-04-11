@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.crawler.entity.CompanyShorter;
 import org.crawler.mapper.CompanyShorterMapper;
+import org.crawler.service.mail.MailComponent;
 import org.crawler.service.spider.gsxt.GD_CompanyListPipeline;
 import org.crawler.service.spider.gsxt.GD_CompanyListProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class CreditChinaCompanyListSpiderComponent implements ApplicationRunner 
 
     @Autowired
     private CreditChinaCompanyListProcessor creditChinaCompanyListProcessor;
+
+    @Autowired
+    private MailComponent mailComponent;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -85,8 +89,11 @@ public class CreditChinaCompanyListSpiderComponent implements ApplicationRunner 
         }
 
         stopWatch.stop();
-
         log.info("********************************* [信用中国] 爬虫执行完毕，总共用时 {} 秒，共爬取链接 {} 条", stopWatch.getTotalTimeSeconds(), counter);
 
+        // 异步发送通知邮件
+        if (mailComponent != null) {
+            mailComponent.sendSimpleMail("xxxxx@xxx.com", "【crawler】爬虫进度通知", "[信用中国] 爬虫已执行完毕！共耗时：" + stopWatch.getTotalTimeSeconds() + " 秒！");
+        }
     }
 }
