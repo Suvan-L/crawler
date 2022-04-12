@@ -1,7 +1,7 @@
 # 创建表
 CREATE TABLE `crawler_company_shorter` (
      `id` int NOT NULL AUTO_INCREMENT COMMENT 'id（自增主键）',
-     `name` varchar(50) NOT NULL COMMENT '[必填] 公司简称',
+     `name` varchar(50) NOT NULL COMMENT '[必填] 公司简称（唯一索引）',
      `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
      `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
      PRIMARY KEY (`id`)
@@ -30,9 +30,9 @@ CREATE UNIQUE INDEX index_uni_scid ON crawler_company_list(uni_scid);
 CREATE TABLE `crawler_credit_china_company_list` (
     `id` int NOT NULL AUTO_INCREMENT COMMENT 'id（自增主键）',
     `accurate_entity_name` varchar(50) NOT NULL COMMENT '[必填] 公司名',
-    `accurate_entity_code` varchar(80) NOT NULL COMMENT '[必填] 统一社会信用代码',
-    `uuid` varchar(150) NULL COMMENT '[选填] 注册号',
-    `recid` varchar(150) NULL COMMENT '[选填] 法定代表人',
+    `accurate_entity_code` varchar(80) NOT NULL COMMENT '[必填] 统一社会信用代码（唯一索引）',
+    `uuid` varchar(150) NOT NULL COMMENT '[必填] UUID 标识（详情页标识）（唯一索引）',
+    `recid` varchar(150) NOT NULL COMMENT '[必填] 法定代表人',
     `accurate_entity_name_query` varchar(70) NULL COMMENT '[选填] 公司名（搜索）',
     `entityType` varchar(10) NULL COMMENT '[选填] 主体类型（1-企业法人，5-社团法人，7-事业单位）',
     `date_source` varchar(50) NULL COMMENT '[选填] 数据来源',
