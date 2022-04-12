@@ -3,6 +3,7 @@ package org.crawler.service.spider.creditchina;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.CredentialsProvider;
 import org.crawler.entity.CreditChinaCompanyList;
@@ -123,6 +124,27 @@ public class CreditChinaCompanyListProcessor implements PageProcessor {
                 String keyword = page.getUrl().regex("keyword=([^&]*)").get();
                 String detailUrl = buildDetailsContentUrl(keyword, searchHomeList.getUuid());
                 page.addTargetRequest(new Request(detailUrl));
+
+
+                // 判断共有多少页，然后构建所有页的链接(仅当 page =1 的时候执行逻辑)
+                String currentPage =  page.getUrl().regex("page=([^&]*)").get();
+                String pageSize =  page.getUrl().regex("pageSize=([^&]*)").get();
+                if ("1".equals(currentPage)) {
+                    int totalSize = data.getTotalSize();
+
+                    if (totalSize > 1) {
+                        // 构建后续页链接
+                        List<String> nextUrlList = Lists.newArrayList();
+                        for (int i = 2; i <= totalSize; i ++) {
+                            nextUrlList.add(buildSearchHomeUrl(keyword, i, Integer.parseInt(pageSize)));
+                        }
+
+                        log.info("继续爬取后续页面 nextUrlList : {}", nextUrlList);
+                        page.addTargetRequests(nextUrlList);
+                    }
+                }
+
+
             }
         } else if (page.getUrl().toString().contains("getTyshxydmDetailsContent")) {
             log.info("正在解析企业详情页 url : {}", page.getUrl().toString());

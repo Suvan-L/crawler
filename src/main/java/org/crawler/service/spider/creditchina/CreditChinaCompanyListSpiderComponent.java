@@ -73,8 +73,9 @@ public class CreditChinaCompanyListSpiderComponent implements ApplicationRunner 
                 for (CompanyShorter shorter: pageResult.getRecords()) {
                     String name = shorter.getName();
 
-                    // 添加爬虫请求(只爬取首页前 5 条)（热点数据）
-                    String apiUrl = CreditChinaCompanyListProcessor.buildSearchHomeUrl(name, 1, 5);
+                    // 添加爬虫请求,首页 20 条，然后 Page 解析若发现还有后续页面，同样也会进行爬取
+                    // [信用中国] 的网站逻辑就是 totalSize 总页数最多 5 页，所以，尽量保证搜索结果前 100 条即可
+                    String apiUrl = CreditChinaCompanyListProcessor.buildSearchHomeUrl(name, 1, 20);
                     spider.addUrl(apiUrl);
 
                     counter ++;
